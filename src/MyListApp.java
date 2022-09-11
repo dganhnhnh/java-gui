@@ -1,4 +1,6 @@
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -7,6 +9,7 @@ public class MyListApp extends JFrame {
     private JList list1,list2;
     private JPanel jPanel1,jPanel2;
     private JTextArea jTextArea1, jTextArea2;
+    private JButton button;
     private static String[] colornames = {"black", "blue", "red", "pink"};
     private static Color[] colors={Color.BLACK, Color.BLUE, Color.RED, Color.PINK };
 
@@ -20,16 +23,20 @@ public class MyListApp extends JFrame {
         list2 = createList();
         jTextArea1 = new JTextArea();
         jTextArea2 = new JTextArea();
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(2);
-        jTextArea2.setColumns(20);
-        jTextArea2.setRows(2);
+        jTextArea1.setColumns(15);
+        jTextArea1.setRows(4);
+        jTextArea2.setColumns(15);
+        jTextArea2.setRows(4);
+        button = new JButton("Convert");
+        button.setSize(100,100);
+
         jPanel1.add(list1);
         jPanel1.add(jTextArea1);
         jPanel2.add(list2);
         jPanel2.add(jTextArea2);
         add(jPanel1);
         add(jPanel2);
+        add(button);
 
         list1.addListSelectionListener(
             new ListSelectionListener() {
@@ -71,6 +78,15 @@ public class MyListApp extends JFrame {
         // havent work yet
             }
         );
+        
+        button.addActionListener(new ActionListener(){  
+         
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                myConverter.setInput(Double.parseDouble(jTextArea1.getText()));
+                jTextArea2.setText(""+myConverter.outputValue());
+            }  
+            });  
     }
 
     public MyListApp(){
