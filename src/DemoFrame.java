@@ -1,6 +1,6 @@
 import javax.swing.JFrame;
 
-public class App0 {
+public class DemoFrame {
     public static void main(String[] args) throws Exception {
         
         JFrame frame = new JFrame();
